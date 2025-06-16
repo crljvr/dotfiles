@@ -10,7 +10,6 @@ return {
 				ensure_installed = {
 					"lua_ls",
 					"ts_ls",
-					"dartls",
 				},
 			})
 		end,
@@ -36,38 +35,6 @@ return {
 			vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, {})
 			-- This should present function declaration parameter names and such in Dart.
 			vim.keymap.set("n", "<C-h>", vim.lsp.buf.signature_help, {})
-
-			local dartExcludedFolders = {
-				vim.fn.expand("$HOME/AppData/Local/Pub/Cache"),
-				vim.fn.expand("$HOME/.pub-cache"),
-				vim.fn.expand("/opt/homebrew/"),
-				vim.fn.expand("$HOME/tools/flutter/"),
-			}
-
-			lspconfig.dartls.setup({
-				capabilities = capabilities,
-				cmd = {
-					"dart",
-					"language-server",
-					"--protocol=lsp",
-				},
-				filetypes = { "dart" },
-				init_options = {
-					onlyAnalyzeProjectsWithOpenFiles = false,
-					suggestFromUnimportedLibraries = true,
-					closingLabels = true,
-					outline = false,
-					flutterOutline = false,
-				},
-				settings = {
-					dart = {
-						analysisExcludedFolders = dartExcludedFolders,
-						updateImportsOnRename = true,
-						completeFunctionCalls = true,
-						showTodos = true,
-					},
-				},
-			})
 		end,
 	},
 }

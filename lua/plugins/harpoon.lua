@@ -6,11 +6,15 @@ return {
 
     harpoon:setup()
 
-    vim.keymap.set("n", "<leader>a", function()
+    vim.keymap.set("n", "<leader>ha", function()
       harpoon:list():add()
     end)
 
-    vim.keymap.set("n", "<C-e>", function()
+    vim.keymap.set("n", "<leader>hr", function()
+      harpoon:list():remove()
+    end)
+
+    vim.keymap.set("n", "<leader>hl", function()
       harpoon.ui:toggle_quick_menu(harpoon:list())
     end)
 
@@ -28,6 +32,10 @@ return {
 
     vim.keymap.set("n", "<C-l>", function()
       harpoon:list():select(4)
+    end)
+
+    vim.keymap.set("n", "<leader>hc", function()
+      harpoon:list():clear()
     end)
   end,
 }
